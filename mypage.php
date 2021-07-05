@@ -89,6 +89,10 @@ function favorite_img(){
                     </ul>
             </header>
         </div>
+
+        <div class="nickname_show wrapper" id="img_show">
+            <p>ニックネーム： <?php echo $_SESSION["login_user_nickname"]?></p>
+        </div>
         <div class="img_show wrapper" id="img_show">
             <h2>お気に入り</h2>
             <div class="post_images">

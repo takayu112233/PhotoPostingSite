@@ -20,8 +20,8 @@ if(!$nickname = filter_input(INPUT_POST, 'nickname')){
 }
 $pass = filter_input(INPUT_POST, 'pass');
 //正規表現
-if (!preg_match("/\A[a-z\d]{8,100}+\z/i",$pass)){
-    $err[] = 'パスワードは英数字8文字以上100文字以下にしてください。';
+if (!preg_match("/\A[a-z\d]{0,30}+\z/i",$pass)){
+    $err[] = 'パスワードは英数字30文字以下にしてください。';
 }
 $password_conf = filter_input(INPUT_POST, 'password_conf');
 if ($pass !== $password_conf){
@@ -56,6 +56,6 @@ if (count($err) === 0){
     <?php else : ?>
     <p>ユーザ登録が完了しました</p>
     <?php endif ?>
-    <a href="./signup_form.php">戻る</a>
+    <a href="./login_form.php">ログイン</a>
 </body>
 </html>

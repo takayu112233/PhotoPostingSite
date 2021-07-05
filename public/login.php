@@ -5,8 +5,8 @@ require_once '../classes/UserLogic.php';
 
 $err = [];
 
-if(!$nickname = filter_input(INPUT_POST, 'nickname')){
-    $err['nickname'] ='ニックネームを記入してください';
+if(!$username = filter_input(INPUT_POST, 'username')){
+    $err['username'] ='ニックネームを記入してください';
 }
 if(!$pass = filter_input(INPUT_POST, 'pass')){
     $err['pass'] ='パスワードを記入してください';
@@ -20,7 +20,7 @@ if (count($err) > 0){
     return;
 }
 //ログイン成功時の処理
-$result = UserLogic::login($nickname, $pass);
+$result = UserLogic::login($username, $pass);
 //ログイン失敗時の処理
 if (!$result){
     header('Location: login_form.php');
@@ -39,6 +39,7 @@ if (!$result){
 <body>
 <h2>ログイン完了</h2>
 <p>ログインしました</p>
-<a href="./mypage.php">マイページへ</a>
+<a href="../mypage.php">マイページへ</a>
+<a href="../search_img.php">写真検索へ</a>
 </body>
 </html>

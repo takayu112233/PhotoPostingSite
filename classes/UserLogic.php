@@ -33,28 +33,41 @@ class UserLogic //Userlogicという名のクラス名定義
     }
     /**
      * ログイン処理
-     * @param string $nickname
+     * @param string $username
      * @param string $pass
      * @return bool $result
      */
-    public static function login($nickname, $pass)
+    public static function login($username, $pass)
     {
         //結果
         $result = false;
 
-        //ユーザをニックネームから検索取得
-        $g15 = self::getUserByNickname($nickname);
+        //ユーザを検索取得
+        $user_data = self::getUserData($username);
 
-        if (!$g15){
-            $_SESSION['msg'] = 'ニックネームが一致しません';
+        if (!$user_data){
+            $_SESSION['msg'] = 'ユーザー名を確認してください';
             return $result;
         }
         //パスワードの照会
-        if (password_verify($pass, $g15['pass'])){
+        if (password_verify($pass, $user_data['pass'])){
             //ログイン成功
             session_regenerate_id(true);
-            $_SESSION['login_user'] = $g15;
+            $_SESSION['login_user_id'] = $user_data['user_id'];
+            $_SESSION['login_user_name'] = $user_data['user_name'];
+            $_SESSION['login_user_nickname'] = $user_data['nickname'];
             $result = true;
+
+            
+            //ここでリダイレクト
+            if(strpos($_COOKIE["back_url"],'.php') != false){
+                $url = "Location: ../" . $_COOKIE["back_url"];
+                setcookie("back_url", "", time() - 30);
+                header($url);
+            }else{
+                header('Location: ../search_img.php');
+            }
+            
             return $result;
         }
         $_SESSION['msg'] = 'パスワードが一致しません';
@@ -63,28 +76,28 @@ class UserLogic //Userlogicという名のクラス名定義
 
 
     /**
-     * ニックネームからユーザ名を取得
+     * ユーザーデータの取得
      * @param string $nickname
      * @return array|bool $result|false
      */
-    public static function getUserByNickname($nickname)
+    public static function getUserData($username)
     {
         //SQLの準備
         //SQLの実行
         //SQLの結果を返す
 
-        $sql = 'SELECT * FROM users WHERE nickname = ?';
+        $sql = 'SELECT * FROM users WHERE user_name = ?';
 
-        //ニックネームを配列に入れる
+        //ユーザー情報を配列に格納
         $arr = [];
-        $arr[] = $nickname;
+        $arr[] = $username;
 
        try {
            $stmt = connect()->prepare($sql);
            $stmt->execute($arr);
-           //SQLの結果を返す
-           $g15 = $stmt->fetch();
-           return $g15;
+           //SQLの結果を返す（ユーザー情報）
+           $user_data = $stmt->fetch();
+           return $user_data;
        }catch(\Exception $e) {
            return false;
        }
@@ -98,7 +111,7 @@ class UserLogic //Userlogicという名のクラス名定義
     {
         $result = false;
         //セッションにログインユーザが入ってないならfalse
-        if (isset($_SESSION['login_user'])&& $_SESSION['login_user']['user_id']>0){
+        if (isset($_SESSION['login_user_name'])){
             return $result = true;
         }
     }

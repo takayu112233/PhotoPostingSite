@@ -2,18 +2,21 @@
 session_start();
 require_once '../classes/UserLogic.php';
 
-if (!$logout = filter_input(INPUT_POST, 'logout')){
-    exit('不正なリクエストです');
-}
+
+//if (!$logout = filter_input(INPUT_POST, 'logout')){
+//    exit('不正なリクエストです');
+//}
 
 //ログインしているかを判定し、セッションが切れていたらログインしてくださいとメッセージを出す
-$result = UserLogic::checkLogin();
+//$result = UserLogic::checkLogin();
 
-if (!$result) {
-    exit('セッションが切れました、ログインしなおしてください');
-}
+//if (!$result) {
+//    header('Location: https://techacademy.jp/');
+//}
 //ログアウトする
 UserLogic::logout();
+
+header('Location: ../search_img.php');
 
 ?>
 <!DOCTYPE html>
@@ -27,5 +30,6 @@ UserLogic::logout();
 <h2>ログアウト完了</h2>
 <p>ログアウトしました</p>
 <a href="login_form.php">ログイン画面へ</a>
+<a href="../search_img.php">写真検索画面へ</a>
 </body>
 </html>

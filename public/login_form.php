@@ -27,21 +27,19 @@ session_destroy();
 </head>
 <body>
         <h2>ログインフォーム</h2>
-            <?php if (isset($err['msg'])) : ?>
-                <p><?php echo $err['msg']; ?></p>
-            <?php endif; ?>
+
     <form action="login.php" method="POST">
 
     <p>
-        <label for="nickname">ニックネーム:</label>
-        <input type="nickname" name="nickname">
-            <?php if (isset($err['nickname'])) : ?>
-                <p><?php echo $err['nickname']; ?></p>
+        <label for="nickname">ユーザー名:</label>
+        <input type="username" name="username">
+            <?php if (isset($err['username'])) : ?>
+                <p><?php echo $err['username']; ?></p>
             <?php endif; ?>
     </p>
     <p>
         <label for="pass">パスワード:</label>
-        <input type="pass" name="pass">
+        <input type="password" name="pass">
             <?php if (isset($err['pass'])) : ?>
                 <p><?php echo $err['pass']; ?></p>
             <?php endif; ?>
@@ -52,6 +50,10 @@ session_destroy();
         <!--6/25追加　name="login"　-->
     </p>
     </form>
+    
+    <?php if (isset($err['msg'])) : ?>
+                <p><?php echo $err['msg']; ?></p>
+    <?php endif; ?>
     <a href="signup_form.php">新規登録はこちら</a>
 </body>
 </html>

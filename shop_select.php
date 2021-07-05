@@ -2,6 +2,12 @@
 <?php 
 session_start();
 
+if (isset($_SESSION['login_user_nickname'])){
+    $nickname = $_SESSION['login_user_nickname'];
+}else{
+    setcookie("back_url","./shop_select.php",time()+60*60);
+    header('Location: ./public/login_form.php');
+}
 
 require("libDB.php");
 $db = new libDB();
@@ -73,7 +79,7 @@ if(isset($_POST["button"])){
                 $address = htmlspecialchars($_POST["address"], ENT_QUOTES, "UTF-8");
 
                 $sql_q = "INSERT INTO shop(gerne_id,prefecture_id,shop_name,postcode,address) VALUES (" . $genre . "," . $prefecture . ",\"" . $shopname . "\"," . $postcode . ",\"" . $address . "\")";
-                echo $sql_q;
+                //echo $sql_q;
 
                 $sql = $pdo->prepare($sql_q);
                 $sql->execute();
@@ -152,43 +158,47 @@ $shop_table_json = json_encode($shop_result);
 
     <body>
         <div class = "header">
-            <header class="page_header wrapper">
-                <h1>投稿</h1>
-                <ul class="main_menu">
-                    <li><a>ようこそ <?php echo $_SESSION["nickname"] ?> さん</a></li>
-                    <li><a href="./search_img.php">写真検索</a></li>
-                    <li><a href="./logout.php">ログアウト</a></li>
-                </ul>
-            </header>
+        <header class="page_header wrapper">
+            <h1>サービス名</h1>
+            <ul class="main_menu" style="">
+                <li><a>こんにちは <?php echo $nickname ?> さん</a></li>
+                <li><a href="./search_img.php">写真検索</a></li>
+                <li><a href="./mypage.php">マイページ</a></li>
+                <li><a>投稿</a></li>
+                <li><a href="./public/logout.php">ログアウト</a></li>
+            </ul>
+        </header>
         </div>
+
         <div class = "wrapper">
             <a href="./search_img.php" class="button">写真検索へ戻る</a>
         </div>
         <div class = "shop_add wrapper">   
     	    <h2>ショップ追加</h2>
-            <table class="shop_add_t">
-                <tbody>
-                    <tr>
-                        <th><a>ジャンル</a></th>
-                        <th><a>ショップ名</a></th>
-                        <th><a>郵便番号</a></th>
-                        <th><a>都道府県</a></th>
-                        <th><a>住所</a></th>
-               	    </tr>
-
-                    <tr>
-                        <td><select id="genre"><?php select_genre() ?></select></td>
-                        <td><a><input type="text" id="shopname"></a></td>
-                        <td><a><input type="text" id="postcode" size="10" maxlength="8" onKeyUp="AjaxZip3.zip2addr(this,'','prefecture','address');"></a></td>
-                        <td><select id="prefecture" name="prefecture"><?php select_prefecture() ?></select></td>
-                        <td><a><input type="text" name="address" id="address"></a></td>
-                        <td><button onclick="shop_add();">追加</button></td>
-               	    </tr>
-                    <tr>
-                        <td colspan="4"><a id = "system_msg"><?php echo $msg?></a></td>
-               	    </tr>
-                </tbody>
-            </table>
+            <div class="content"> 
+                <table class="shop_add_t">
+                    <tbody>
+                        <tr>
+                            <th><a>ジャンル</a></th>
+                            <th><a>ショップ名</a></th>
+                            <th><a>郵便番号</a></th>
+                            <th><a>都道府県</a></th>
+                            <th><a>住所</a></th>
+               	        </tr>
+                        <tr>
+                            <td><select id="genre"><?php select_genre() ?></select></td>
+                            <td><a><input type="text" id="shopname"></a></td>
+                            <td><a><input type="text" id="postcode" size="10" maxlength="8" onKeyUp="AjaxZip3.zip2addr(this,'','prefecture','address');"></a></td>
+                            <td><select id="prefecture" name="prefecture"><?php select_prefecture() ?></select></td>
+                            <td><a><input type="text" name="address" id="address"></a></td>
+                            <td><button onclick="shop_add();">追加</button></td>
+               	        </tr>
+                        <tr>
+                            <td colspan="4"><a id = "system_msg"><?php echo $msg?></a></td>
+               	        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
         
 

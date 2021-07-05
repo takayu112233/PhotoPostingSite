@@ -149,6 +149,11 @@
         width: calc(100% - 28px);
     }
 
+    /* content　インデント */
+    .content {
+        margin-left: 30px;
+    }
+
   /*
   スマホ用
   */

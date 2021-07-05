@@ -139,13 +139,18 @@ INSERT INTO bookmark(user_id,photo_id) VALUES (2,5);
 
 -- ここからは高橋が作成しているページ用のview
 CREATE VIEW view_all_photo AS 
-SELECT shop_name,photo_id,photo_url FROM photo_data 
+SELECT shop_name,photo_id,photo_url,shop.prefecture_id,gerne_id,comment,user_id,address,prefecture_name,photo_data.shop_id FROM photo_data 
 INNER JOIN shop 
 ON photo_data.shop_id = shop.shop_id
+INNER JOIN prefectures
+ON prefectures.prefecture_id = shop.prefecture_id
 WHERE shop.delete_flag = 0
 AND photo_data.delete_flag = 0
-AND  closed = 0
-ORDER BY photo_data.photo_id desc;
+AND  closed = 0;
+
+
+INNER JOIN prefectures
+ON shop.prefecture_id = prefectures.prefecture_id
 
 
 CREATE VIEW view_shop_select AS 
@@ -203,7 +208,7 @@ MariaDB [g15]> select * from view_shop_select;
 
 
 CREATE VIEW view_all_photo AS 
-SELECT shop_name,photo_id,photo_url FROM photo_data 
+SELECT shop_name,photo_id,photo_url,user_id,prefecture_id,gerne_id FROM photo_data 
 INNER JOIN shop 
 ON photo_data.shop_id = shop.shop_id
 WHERE shop.delete_flag = 0
@@ -230,4 +235,18 @@ USE g15_test01;
 CREATE USER 'g15_test01'@'localhost';
 GRANT ALL ON *.* to 'g15_test01'@'localhost';
 SET PASSWORD FOR 'g15_test01'@'localhost' = PASSWORD('g15');
+
+
+
+
+---
+SELECT shop_name,photo_id,photo_url,prefecture_id,gerne_id
+FROM view_all_photo
+WHERE comment LIKE '%気持ちいい%'
+OR address LIKE '%気持ちいい%'
+OR shop_name LIKE '%気持ちいい%'
+OR prefecture_name LIKE '%気持ちいい%';
+
+select shop_name,photo_id,photo_url,prefecture_id,gerne_id from view_all_photo where prefecture_id=22 where comment LIKE '%気持ちいい%' OR address LIKE '%気持ちいい%' OR shop_name LIKE '%気持ちいい%' OR prefecture_name LIKE '%気持ちいい%'
+
 

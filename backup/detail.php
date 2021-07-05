@@ -1,21 +1,13 @@
-<!DOCTYPE html>
 <?php
-$back_url = "javascript:history.back()";
-if(isset($_COOKIE["back_url"])){
- $back_url = $_COOKIE["back_url"];
-}
-
 session_start();
 require("libDB.php");
 
+setcookie("back_url","./mypage.php",time()+60*60);
+
 $nickname = "";
-$login_style = "";
-$logout_style = "display:none;";
 
 if (isset($_SESSION['login_user_nickname'])){
     $nickname = $_SESSION['login_user_nickname'];
-    $login_style = "display:none;";
-    $logout_style = "";
 }
 
 if(isset($_GET["photoid"])){
@@ -44,6 +36,12 @@ if(isset($_POST["action"])){
             break;
     }
 }
+
+//$photoid = 1;
+//$_SESSION["login_user_id"] = "1";
+
+//セッションを消す↓
+//$_SESSION = array();
 
 $db = new libDB();
 
@@ -90,10 +88,6 @@ if (isset($_SESSION["login_user_id"])) {
     $f_add_url = "login.php";
 }
 
-if(!isset($_SESSION["login_user_id"])){
-    $s_add = "display:none";
-}
-
 
 $db = new libDB();
 $pdo = $db->getPDO();
@@ -119,8 +113,6 @@ foreach($result as $loop){
     $a_shop_name = $loop['shop_name'];
     $a_prefecture = $loop['prefecture_name'].$loop['address'];
 }
-
-$comment = str_replace("&lt;br&gt;", "</br>", $comment);
 
 ?>
 
@@ -162,7 +154,7 @@ $comment = str_replace("&lt;br&gt;", "</br>", $comment);
         </script>
 
 
-        <a href="./search_img.php" class="button">写真検索に戻る</a><br>
+        <a href="javascript:history.back()">写真検索に戻る</a><br>
 
         <div class = "header">
             <header class="page_header wrapper">
@@ -173,13 +165,6 @@ $comment = str_replace("&lt;br&gt;", "</br>", $comment);
                         <li><a href="./mypage.php">マイページ</a></li>
                         <li><a href="./shop_select.php">投稿</a></li>
                         <li><a href="./public/logout.php">ログアウト</a></li>
-                    </ul>
-                    <ul class="main_menu" style="<?php echo $login_style ?>">
-                        <li><a>未ログイン状態です</a></li>
-                        <li><a href="./search_img.php">写真検索</a></li>
-                        <li><a href="./mypage.php">マイページ</a></li>
-                        <li><a href="./shop_select.php">投稿する</a></li>
-                        <li><a href="./public/login_form.php">ログイン</a></li>
                     </ul>
             </header>
         </div>
@@ -202,39 +187,31 @@ $comment = str_replace("&lt;br&gt;", "</br>", $comment);
         <p>住所: <?php echo $prefecture?></p>
         <p>コメント: <?php echo $comment?></p>
         <p>地図:</p>
-        <iframe src="https://maps.google.co.jp/maps?output=embed&q=<?php echo $a_prefecture ?>+<?php echo $a_shop_name ?>" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        <iframe src="https://maps.google.co.jp/maps?output=embed&q=<?php echo $a_prefecture?>+<?php echo $shop_name?>" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </br>
 
         <a onclick="location.href='./shop_select.php'" class="btn btn-flat">
-            <span>新店舗追加</span>
+            <span>新しい店の写真追加</span>
+        </a>
+        </br>
+        <a href="javascript:void(0)" class="btn btn-flat" onclick="add_photo();return false;">
+            <span>同じ店の写真を追加</span>
         </a>
 
-        <dev style="<?php echo $s_add ?>">
-            <a input type="submit" class="btn btn-flat" onclick="window_open();">
-                <span>同店舗追加</span>
-            </a>
-        </dev>
 
-        <a href="http://pnw.cloud.cs.priv.teu.ac.jp/g15/search_img.php?s=<?php echo $a_shop_id?>" input type="submit" class="btn btn-flat">
-            <span>同店舗写真閲覧</span>
-        </a>
+        <script type="text/javascript">
+            function add_photo(){
+                var w = ( screen.width-640 ) / 2;
+                var h = ( screen.height-480 ) / 2;
 
-        <script>
-        function window_open(){
-        window.open("about:blank","img_post.php","width=1000,height=700,scrollbars=yes");
-        document.fdata.target = "img_post.php";
-        document.fdata.method = "post";
-        document.fdata.action = "img_post.php";
-        document.fdata.submit();
-        }
+        
+                var shop_id = <?php echo $a_shop_id?>;
+                var shop_name = "<?php echo $a_shop_name ?>";
+                var genre = "<?php echo $a_gerne  ?>"; 
+
+                post("./img_post.php", {shop_id:shop_id,shop_name:shop_name,genre:genre});
+            }
         </script>
-
-        <form action="#" method="post" name="fdata" id="fdata">
-        <input type="hidden" name="shop_id" value="<?php echo $a_shop_id ?>">
-        <input type="hidden" name="shop_name" value="<?php echo $a_shop_name ?>">
-        <input type="hidden" name="genre" value="<?php echo $a_gerne ?>">
-        <input type="hidden" name="type" value="same_shop">
-        </form>
 
         <footer>
             <p><small>&copy;2021 プロジェクト実習G15</small></p>
