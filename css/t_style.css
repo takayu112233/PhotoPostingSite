@@ -203,9 +203,16 @@
       }
       
       .main_menu li {
-          margin-left: 36px;
-          margin-right: 36px;
+        margin-left: 0px;
+        margin-right: 0px;
       }
+
+      ul.main_menu {
+        padding-left: 0px;
+        margin-right: 10px;
+        margin-left: 10px;
+      }
+
       .main_menu a{
           font-size: 1rem;
       }
@@ -222,4 +229,9 @@
         border: solid 2px #FFF; 
         box-sizing: border-box;
       } 
+
+      /* モバイル　非表示 */
+      #m_display_none{
+          display: none;
+      }
   }

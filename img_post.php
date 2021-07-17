@@ -50,9 +50,9 @@ if($same_shop){
     <body>
         <div class = "header">
         <header class="page_header wrapper">
-            <img src="img/logo_1.png" alt="logo" height="50" style="margin-top: 25px;"><p style="margin-top: 50px;">写真追加</p>
+            <img src="img/logo_1.png" alt="logo" height="50" style="margin-top: 25px;"><p id="m_display_none" style="margin-top: 50px;">写真追加</p>
             <ul class="main_menu" style="<?php echo $default_css ?>">
-                <li><a>こんにちは <?php echo $nickname ?> さん</a></li>
+                <li id="m_display_none"><a>こんにちは <?php echo $nickname ?> さん</a></li>
                 <li><a href="<?php echo $search_img_url ?>"><img src="./img/search.svg" width="32" height="32" title="検索"></a></li>
                 <li><a href="./mypage.php"><img src="./img/mypage.svg" width="32" height="32" title="マイページ"></a></li>
                 <li><a href="./shop_select.php"><img src="./img/post.svg" width="32" height="32" title="投稿" style="filter: drop-shadow(1px 1px 5px gold);"></a></li>
