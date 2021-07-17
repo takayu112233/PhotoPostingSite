@@ -90,10 +90,10 @@ function favorite_img(){
                     <ul class="main_menu" style="<?php echo $logout_style ?>">
                         <li><a>こんにちは <?php echo $nickname ?> さん</a></li>
                         <li><a href="javascript:void(0)" onclick="winCenter()">ニックネーム変更</a></li>
-                        <li><a href="<?php echo $search_img_url ?>">写真検索</a></li>
-                        <li><a>マイページ</a></li>
-                        <li><a href="./shop_select.php">投稿</a></li>
-                        <li><a href="./public/logout.php">ログアウト</a></li>
+                        <li><a href="<?php echo $search_img_url ?>"><img src="./img/search.svg" width="32" height="32" title="検索"></a></li>
+                        <li><a href="./mypage.php"><img src="./img/mypage.svg" width="32" height="32" title="マイページ" style="filter: drop-shadow(1px 1px 5px gold);"></a></li>
+                        <li><a href="./shop_select.php"><img src="./img/post.svg" width="32" height="32" title="投稿"></a></li>
+                        <li><a href="./public/logout.php"><img src="./img/logout.svg" width="32" height="32" title="ログアウト"></a></li>
                     </ul>
             </header>
         </div>

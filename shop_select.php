@@ -154,10 +154,10 @@ $shop_table_json = json_encode($shop_result);
             <img src="img/logo_1.png" alt="logo" height="50" style="margin-top: 25px;"><p style="margin-top: 50px;">写真追加</p>
             <ul class="main_menu" style="">
                 <li><a>こんにちは <?php echo $nickname ?> さん</a></li>
-                <li><a href="<?php echo $search_img_url ?>">写真検索</a></li>
-                <li><a href="./mypage.php">マイページ</a></li>
-                <li><a>投稿</a></li>
-                <li><a href="./public/logout.php">ログアウト</a></li>
+                <li><a href="<?php echo $search_img_url ?>"><img src="./img/search.svg" width="32" height="32" title="検索"></a></li>
+                <li><a href="./mypage.php"><img src="./img/mypage.svg" width="32" height="32" title="マイページ"></a></li>
+                <li><a href="./shop_select.php"><img src="./img/post.svg" width="32" height="32" title="投稿" style="filter: drop-shadow(1px 1px 5px gold);"></a></li>
+                <li><a href="./public/logout.php"><img src="./img/logout.svg" width="32" height="32" title="ログアウト"></a></li>
             </ul>
         </header>
         </div>

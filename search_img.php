@@ -206,17 +206,17 @@ function show_img()
                     <img src="img/logo_1.png" alt="logo" height="50" style="margin-top: 25px;"><p style="margin-top: 50px;">写真検索</p>
                     <ul class="main_menu" style="<?php echo $logout_style ?>">
                         <li><a>こんにちは <?php echo $nickname ?> さん</a></li>
-                        <li><a>写真検索</a></li>
-                        <li><a href="./mypage.php">マイページ</a></li>
-                        <li><a href="./shop_select.php">投稿</a></li>
-                        <li><a href="./public/logout.php">ログアウト</a></li>
+                        <li><a><img src="./img/search.svg" width="32" height="32" style="filter: drop-shadow(1px 1px 5px gold);" title="検索"></a></li>
+                        <li><a href="./mypage.php"><img src="./img/mypage.svg" width="32" height="32" title="マイページ"></a></li>
+                        <li><a href="./shop_select.php"><img src="./img/post.svg" width="32" height="32" title="投稿"></a></li>
+                        <li><a href="./public/logout.php"><img src="./img/logout.svg" width="32" height="32" title="ログアウト"></a></li>
                     </ul>
                     <ul class="main_menu" style="<?php echo $login_style ?>">
                         <li><a>未ログイン状態です</a></li>
-                        <li><a>写真検索</a></li>
-                        <li><a href="./mypage.php">マイページ</a></li>
-                        <li><a href="./shop_select.php">投稿する</a></li>
-                        <li><a href="./public/login_form.php">ログイン</a></li>
+                        <li><a><img src="./img/search.svg" width="32" height="32" style="filter: drop-shadow(1px 1px 10px gold);" title="検索"></a></li>
+                        <li><a href="./mypage.php"><img src="./img/mypage.svg" width="32" height="32" title="マイページ"></a></li>
+                        <li><a href="./shop_select.php"><img src="./img/post.svg" width="32" height="32" title="投稿"></a></li>
+                        <li><a href="./public/login_form.php"><img src="./img/login.svg" width="32" height="32" title="ログイン"></a></li>
                     </ul>
             </header>
 

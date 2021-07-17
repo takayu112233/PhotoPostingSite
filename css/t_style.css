@@ -38,8 +38,9 @@
       margin-left: 36px;
      
   }
-  .main_menu a:hover{
-      color: #AAA
+  .main_menu img:hover{
+    transition-duration: 0.2s;
+	opacity: 0.5 ;
   }
   
   .page_header h1{
