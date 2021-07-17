@@ -6,7 +6,7 @@ require_once '../classes/UserLogic.php';
 $err = [];
 
 if(!$username = filter_input(INPUT_POST, 'username')){
-    $err['username'] ='ニックネームを記入してください';
+    $err['username'] ='ユーザ名を記入してください';
 }
 if(!$pass = filter_input(INPUT_POST, 'pass')){
     $err['pass'] ='パスワードを記入してください';
@@ -35,11 +35,14 @@ if (!$result){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ログイン完了</title>
+    <link rel="stylesheet" href="login.css">
 </head>
-<body>
-<h2>ログイン完了</h2>
-<p>ログインしました</p>
-<a href="../mypage.php">マイページへ</a>
-<a href="../search_img.php">写真検索へ</a>
-</body>
+    <div id="login">
+    <form action="mypage.php" method="POST">
+        
+        <p><center><font size="3" color="#b5cd6">ログイン完了です</font><center></p>
+        <hr>
+        <input type="submit" value="トップページへ">
+        <!--トップページへ変更する-->
+    </form>
 </html>

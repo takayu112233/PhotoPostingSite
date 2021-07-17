@@ -5,7 +5,7 @@ require_once '../classes/UserLogic.php';
 
 $result = UserLogic::checkLogin();
 if($result) {
-    header('Location: mypage.php');
+    header('Location: ../search_img.php');
     return;
 }
 
@@ -24,36 +24,34 @@ session_destroy();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ログイン画面</title>
+    <link rel="stylesheet" href="login_form.css">
+
 </head>
-<body>
-        <h2>ログインフォーム</h2>
+
+  <div id="login">
+    <div id="window"></div>   <!-- -->
 
     <form action="login.php" method="POST">
 
-    <p>
-        <label for="nickname">ユーザー名:</label>
-        <input type="username" name="username">
-            <?php if (isset($err['username'])) : ?>
-                <p><?php echo $err['username']; ?></p>
-            <?php endif; ?>
-    </p>
-    <p>
-        <label for="pass">パスワード:</label>
-        <input type="password" name="pass">
-            <?php if (isset($err['pass'])) : ?>
-                <p><?php echo $err['pass']; ?></p>
-            <?php endif; ?>
-    </p>
+        <input type="button" onclick="history.back(); return false;" value="前に戻る" style="margin-bottom: 10px;">
 
-    <p>
-        <input type="submit" name="login" value="ログイン">
-        <!--6/25追加　name="login"　-->
-    </p>
+        <span class="fontawesome-user"></span>
+        <!--fontawesome-userはアイコン表示(人の)-->
+        <input type="text" name="username"　required method="POST">
+        <?php if (isset($err['username'])) : ?>
+                <p><?php echo $err['username']; ?></p>
+        <?php endif; ?>
+      
+        <span class="fontawesome-lock"></span>
+        <!--fontawesome-userはアイコン表示(鍵の)-->
+        <input type="password" name="pass" required >
+        <?php if (isset($err['pass'])) : ?>
+                <p><?php echo $err['pass']; ?></p>
+        <?php endif; ?>
+        
+        <input type="submit" value="Login" style="margin-bottom: 10px;">
+
+        <input type="button" onclick="location.href='./signup_form.php'" value="register">
+
     </form>
-    
-    <?php if (isset($err['msg'])) : ?>
-                <p><?php echo $err['msg']; ?></p>
-    <?php endif; ?>
-    <a href="signup_form.php">新規登録はこちら</a>
-</body>
 </html>

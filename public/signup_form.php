@@ -13,7 +13,6 @@ unset($_SESSION['login_err']);
 //isset(変数)で変数に値が入っているか確認し、3項演算子で比較
 //$_SESSION['login_err']を評価し中身があるなら$login_errに代入、ないのならばnullを代入
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,36 +20,34 @@ unset($_SESSION['login_err']);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ユーザ登録画面</title>
+    <link rel="stylesheet" href="signup_form.css">
 </head>
-<body>
-    <h2>ユーザ登録フォーム</h2>
-        <?php if (isset($login_err)) : ?>
-            <p><?php echo $login_err; ?></p>
-        <?php endif; ?>
+  <div id="login">
+  <div id="window"></div>   <!-- -->
     <form action="register.php" method="POST">
-    <p>
-        <label for="username">ユーザ名:</label>
-        <input type="text" name="username">
-    </p>
-    <p>
-        <label for="nickname">ニックネーム:</label>
-        <input type="nickname" name="nickname">
-    </p>
-    <p>
-        <label for="password">パスワード:</label>
-        <input type="password" name="pass">
-    </p>
-    <p>
-        <label for="password_conf">パスワード確認:</label>
-        <input type="password" name="password_conf">
-    </p>
-    <input type="hidden" name="csrf_token" value="<?php echo h(setToken()); ?>">
-    <!-- -->
-    <p>
-        <input type="submit" value="新規登録">
-    </p>
+
+        <p><label for="username">username:</label></p>
+        <span class="fontawesome-user"></span>
+        <input type="text" name="username"　required> 
+
+        <p><label for="nickname">nickname:</label></p>  
+        <span class="fontawesome-user"></span>
+        <input type="text" name="nickname" required>
+
+        <p><label for="password">password:</label></p> 
+        <span class="fontawesome-lock"></span>
+        <input type="password" name="pass" required>
+
+        <p><label for="password_conf">password confirmation:</label></p> 
+        <span class="fontawesome-lock"></span>
+        <input type="password" name="password_conf" required>
+
+        <input type="hidden" name="csrf_token" value="<?php echo h(setToken()); ?>">
+             
+        <input type="submit" value="register" style="margin-bottom: 10px;">
+         
+        <input type="button" onclick="location.href='./login_form.php'" value="login page" style="margin-bottom: 10px;">
+        
+        <input type="button" onclick="location.href='../search_img.php'" value="photo search page">
     </form>
-    <a href="./login_form.php">ログイン画面に戻る</a>       
-    <a href="../search_img.php">写真検索画面に戻る</a>
-</body>
 </html>
