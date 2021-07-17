@@ -3,6 +3,8 @@
 
 session_start();
 
+setcookie("back_url","../." . $_SERVER['REQUEST_URI'],time()+60*60);
+
 $search_img_url = "./search_img.php";
 
 if(isset($_COOKIE["search_parameter"])){
@@ -135,6 +137,8 @@ foreach($result as $loop){
 
     $r_comment = str_replace('&lt;br&gt;', '<br>', $comment);
 
+    $bookmark_count = $loop['bookmark_count'];
+
     $a_gerne = $loop['gerne_name'];
     $a_shop_id = $loop['shop_id'];
     $a_shop_name = $loop['shop_name'];
@@ -259,7 +263,7 @@ function window_open(){
                 <a class="button" href="./search_img.php?s=<?php echo $a_shop_id?>" input type="submit" class="btn btn-flat">同じ場所の他の投稿を見る</a>
                 <a style="<?php echo $f_add ?>" class="button" href="javascript:void(0)" onClick="<?php echo $f_func ?>();return false;">☆</a>
                 <a style="<?php echo $f_del ?>" class="button" href="javascript:void(0)" onClick="un_favorite();return false;">⭐️</a>
-                <a><?php echo $b_count ?></a>
+                <a>📝⭐️x<?php echo $bookmark_count ?></a>
                 <a style="<?php echo $del ?>" class="button" href="javascript:void(0)" onclick="deleteButton();">🗑</a>
             </header>
         </div>

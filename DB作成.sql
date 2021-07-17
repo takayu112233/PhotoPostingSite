@@ -171,13 +171,17 @@ ORDER BY shop.shop_id desc;
 
 -- 竣のview
 CREATE VIEW view_photo_details as
-SELECT photo_id,photo_data.shop_id,gerne_name,shop_name,prefecture_name,postcode,address,photo_url,comment FROM shop
+SELECT photo_data.photo_id,photo_data.shop_id,gerne_name,shop_name,prefecture_name,postcode,address,photo_url,comment,nickname,IFNULL(bookmark_count,0) AS bookmark_count FROM shop
 INNER JOIN photo_data
 ON shop.shop_id = photo_data.shop_id 
 INNER JOIN prefectures
 ON shop.prefecture_id = prefectures.prefecture_id
 INNER JOIN gerne
 ON shop.gerne_id = gerne.gerne_id
+INNER JOIN users
+ON photo_data.user_id = users.user_id
+LEFT JOIN view_bookmark_count
+ON photo_data.photo_id = view_bookmark_count.photo_id
 WHERE photo_data.delete_flag = 0
 AND shop.delete_flag = 0
 AND shop.closed = 0;
