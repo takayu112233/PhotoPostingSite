@@ -16,7 +16,11 @@ require_once '../classes/UserLogic.php';
 //ログアウトする
 UserLogic::logout();
 
-header('Location: ../search_img.php');
+if(isset($_COOKIE["search_parameter"])){
+    header('Location: ../search_img.php?'.$_COOKIE["search_parameter"]);
+}else{
+    header('Location: ../search_img.php');
+}
 
 ?>
 <!DOCTYPE html>

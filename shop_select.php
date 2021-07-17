@@ -7,6 +7,12 @@ $genre_name = "";
 $shopname = "";
 $ai_id = "-1";
 
+$search_img_url = "./search_img.php";
+
+if(isset($_COOKIE["search_parameter"])){
+ $search_img_url = "./search_img.php?" . $_COOKIE["search_parameter"];
+}
+
 if (isset($_SESSION['login_user_nickname'])){
     $nickname = $_SESSION['login_user_nickname'];
 }else{
@@ -148,7 +154,7 @@ $shop_table_json = json_encode($shop_result);
             <img src="img/logo_1.png" alt="logo" height="50" style="margin-top: 25px;"><p style="margin-top: 50px;">写真追加</p>
             <ul class="main_menu" style="">
                 <li><a>こんにちは <?php echo $nickname ?> さん</a></li>
-                <li><a href="./search_img.php">写真検索</a></li>
+                <li><a href="<?php echo $search_img_url ?>">写真検索</a></li>
                 <li><a href="./mypage.php">マイページ</a></li>
                 <li><a>投稿</a></li>
                 <li><a href="./public/logout.php">ログアウト</a></li>
@@ -157,7 +163,7 @@ $shop_table_json = json_encode($shop_result);
         </div>
 
         <div class = "wrapper">
-            <a href="./search_img.php" class="button">写真検索へ戻る</a>
+            <a href="<?php echo $search_img_url ?>" class="button">写真検索へ戻る</a>
             <a href="" class="button">店舗選択リセット</a>
         </div>
         

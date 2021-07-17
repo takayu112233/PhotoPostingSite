@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php 
 setcookie("back_url","../." . $_SERVER['REQUEST_URI'],time()+60*60);
+setcookie("search_parameter", $_SERVER['QUERY_STRING'],time()+60*60);
 
 session_start();
 
@@ -48,7 +49,7 @@ if (isset($_GET['sd'])){
 }
 
 if(strlen($filter_msg)>0){
-    $filter_msg = $filter_msg . " 絞り込み中";
+    $filter_msg = $filter_msg . " 絞り込み中" . " <a href=\"javascript:void(0)\" class=\"button b_filter\" onClick=\"filter_reset();return false;\">絞込リセット</a>";
 }
 
 require("libDB.php");

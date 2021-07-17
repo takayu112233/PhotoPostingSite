@@ -3,10 +3,10 @@
 
 session_start();
 
-$back_url = "javascript:history.back()";
+$search_img_url = "./search_img.php";
 
-if(isset($_COOKIE["back_url"])){
- $back_url = $_COOKIE["back_url"];
+if(isset($_COOKIE["search_parameter"])){
+ $search_img_url = "./search_img.php?" . $_COOKIE["search_parameter"];
 }
 
 require("libDB.php");
@@ -254,7 +254,7 @@ function window_open(){
             </header>
 
             <header class="title wrapper">
-                <a href="<?php echo $back_url ?>" class="button">写真検索に戻る</a>
+                <a href="<?php echo $search_img_url ?>" class="button">写真検索に戻る</a>
                 <a style="<?php echo $s_add ?>" input type="submit" class="button" onclick="window_open();">同じ場所の写真を追加</a>
                 <a class="button" href="./search_img.php?s=<?php echo $a_shop_id?>" input type="submit" class="btn btn-flat">同じ場所の他の投稿を見る</a>
                 <a style="<?php echo $f_add ?>" class="button" href="javascript:void(0)" onClick="<?php echo $f_func ?>();return false;">☆</a>

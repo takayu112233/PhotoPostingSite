@@ -2,6 +2,12 @@
 <?php 
 session_start();
 
+$search_img_url = "./search_img.php";
+
+if(isset($_COOKIE["search_parameter"])){
+ $search_img_url = "./search_img.php?" . $_COOKIE["search_parameter"];
+}
+
 if (isset($_SESSION['login_user_nickname'])){
     $nickname = $_SESSION['login_user_nickname'];
     $login_style = "display:none;";
@@ -84,7 +90,7 @@ function favorite_img(){
                     <ul class="main_menu" style="<?php echo $logout_style ?>">
                         <li><a>こんにちは <?php echo $nickname ?> さん</a></li>
                         <li><a href="javascript:void(0)" onclick="winCenter()">ニックネーム変更</a></li>
-                        <li><a href="./search_img.php">写真検索</a></li>
+                        <li><a href="<?php echo $search_img_url ?>">写真検索</a></li>
                         <li><a>マイページ</a></li>
                         <li><a href="./shop_select.php">投稿</a></li>
                         <li><a href="./public/logout.php">ログアウト</a></li>
