@@ -21,25 +21,26 @@ unset($_SESSION['login_err']);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ユーザ登録画面</title>
     <link rel="stylesheet" href="signup_form.css">
+    <link rel="icon" href="../img/favi.ico">
 </head>
   <div id="login">
   <div id="window"></div>   <!-- -->
     <form action="register.php" method="POST">
 
         <p><label for="username">username:</label></p>
-        <span class="fontawesome-user"></span>
+        <span class="fontawesome-user"><img src="../img/user.png"><br></span>
         <input type="text" name="username"　required> 
 
         <p><label for="nickname">nickname:</label></p>  
-        <span class="fontawesome-user"></span>
+        <span class="fontawesome-user"><img src="../img/user.png"><br></span>
         <input type="text" name="nickname" required>
 
         <p><label for="password">password:</label></p> 
-        <span class="fontawesome-lock"></span>
+        <span class="fontawesome-user"><img src="../img/pass.png"><br></span>
         <input type="password" name="pass" required>
 
         <p><label for="password_conf">password confirmation:</label></p> 
-        <span class="fontawesome-lock"></span>
+        <span class="fontawesome-user"><img src="../img/pass.png"><br></span>
         <input type="password" name="password_conf" required>
 
         <input type="hidden" name="csrf_token" value="<?php echo h(setToken()); ?>">
