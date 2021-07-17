@@ -110,6 +110,7 @@
   }
 
   .shop_name {
+    text-align: center;
     color: #000;
     position: absolute;
     top: 50%;
@@ -123,8 +124,18 @@
     opacity: 0;
     }
 
+  /* google_place_id非表示 */
+  table#google_place_t td:nth-child(5) {
+    display: none;
+  }
+  table#google_place_t th:nth-child(5) {
+    display: none;
+  }
 
   /* ボタン */
+  a#table_button {
+    padding: 6px;
+  }
 
   a.button {
     border-radius: 5px;
@@ -132,6 +143,11 @@
     padding: 10px;
     text-decoration: none;
     color: #000000;
+  }
+
+  .button:hover {
+    transition-duration: 0.2s;
+	opacity: 0.5 ;
   }
   
   /* ショップ選択テーブル */

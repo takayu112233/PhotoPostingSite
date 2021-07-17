@@ -6,10 +6,10 @@ SET PASSWORD FOR 'g15'@'localhost' = PASSWORD('g15');
 
 create table users(
 user_id int auto_increment,
-user_name varchar(30) not null,
+user_name varchar(30) unique,
 pass varchar(64) not null,
 delete_flag int default 0,
-nickname varchar(30) not null,
+nickname varchar(100) not null,
 primary key (user_id)
 );
 
@@ -36,6 +36,7 @@ latitude double(8,6),
 longitude double(8,6),
 delete_flag int default 0,
 closed int default 0,
+place_id varchar(60) unique,
 primary key (shop_id),
 foreign key(gerne_id) references gerne(gerne_id),
 foreign key(prefecture_id) references prefectures(prefecture_id)
@@ -137,22 +138,26 @@ INSERT INTO bookmark(user_id,photo_id) VALUES (2,5);
 
 
 
--- ここからは高橋が作成しているページ用のview
+
+-- ブックマーク数を表示するview
+create view view_bookmark_count as
+select photo_id , count(photo_id) as bookmark_count from bookmark group by photo_id;
+
+-- v
 CREATE VIEW view_all_photo AS 
-SELECT shop_name,photo_id,photo_url,shop.prefecture_id,gerne_id,comment,user_id,address,prefecture_name,photo_data.shop_id FROM photo_data 
+SELECT shop_name,photo_data.photo_id,photo_url,shop.prefecture_id,gerne_id,comment,user_id,address,prefecture_name,photo_data.shop_id,IFNULL(bookmark_count,0) AS bookmark_count FROM photo_data 
 INNER JOIN shop 
 ON photo_data.shop_id = shop.shop_id
 INNER JOIN prefectures
 ON prefectures.prefecture_id = shop.prefecture_id
+LEFT JOIN view_bookmark_count
+ON photo_data.photo_id = view_bookmark_count.photo_id
 WHERE shop.delete_flag = 0
 AND photo_data.delete_flag = 0
 AND  closed = 0;
 
 
-INNER JOIN prefectures
-ON shop.prefecture_id = prefectures.prefecture_id
-
-
+-- v
 CREATE VIEW view_shop_select AS 
 SELECT shop_id,gerne_name,prefecture_name,shop_name,address
 FROM shop
@@ -177,6 +182,20 @@ WHERE photo_data.delete_flag = 0
 AND shop.delete_flag = 0
 AND shop.closed = 0;
 
+
+-- view_all_photo に ブックマーク数を表示（仮）
+CREATE VIEW view_all_photo_2 AS 
+SELECT shop_name,photo_data.photo_id,photo_url,shop.prefecture_id,gerne_id,comment,user_id,address,prefecture_name,photo_data.shop_id,IFNULL(bookmark_count,0) FROM photo_data 
+INNER JOIN shop 
+ON photo_data.shop_id = shop.shop_id
+INNER JOIN prefectures
+ON prefectures.prefecture_id = shop.prefecture_id
+LEFT JOIN view_bookmark_count
+ON photo_data.photo_id = view_bookmark_count.photo_id
+WHERE shop.delete_flag = 0
+AND photo_data.delete_flag = 0
+AND  closed = 0;
+
 -- ↓メモです。
 
 
@@ -187,39 +206,6 @@ drop table prefectures;
 drop table shop;
 drop table users;
 
-
-CREATE VIEW view_shop_select AS 
-SELECT shop_id,gerne_name,prefecture_name,shop_name,address
-FROM shop
-INNER JOIN prefectures
-ON shop.prefecture_id = prefectures.prefecture_id
-INNER JOIN gerne
-ON shop.gerne_id = gerne.gerne_id
-WHERE delete_flag = 0
-AND closed = 0;
-
-MariaDB [g15]> select * from view_shop_select;
-+---------+------------+-----------------+--------------------+-----------------------+
-| shop_id | gerne_name | prefecture_name | shop_name          | address               |
-+---------+------------+-----------------+--------------------+-----------------------+
-|       1 | グルメ     | 青森県          | 山中ラーメン       | 山梨県都留            |
-|       2 | グルメ     | 山梨県          | 山もとうどん       | 都留市他オクラ        |
-+---------+------------+-----------------+--------------------+-----------------------+
-
-
-CREATE VIEW view_all_photo AS 
-SELECT shop_name,photo_id,photo_url,user_id,prefecture_id,gerne_id FROM photo_data 
-INNER JOIN shop 
-ON photo_data.shop_id = shop.shop_id
-WHERE shop.delete_flag = 0
-AND photo_data.delete_flag = 0
-AND  closed = 0;
-+--------------------+----------+--------------------------------------------------------------------------------------+
-| shop_name          | photo_id | photo_url                                                                            |
-+--------------------+----------+--------------------------------------------------------------------------------------+
-| 山中ラーメン       |        1 | ./upload_img/11_b836b46c077d97dfa1aa57b856a668e0504bb7fbcdc50e98215de68c66411327.JPG |
-| 山中ラーメン       |        2 | ./upload_img/11_06a58b0d451e6a14aa8abd4bb09e7334925fdd7050412bceb0af4537b5e97a46.JPG |
-+--------------------+----------+--------------------------------------------------------------------------------------+
 
 -- dbを作成する時のメモです。
 -- ローカルで作成用(サーバーでは実行しない)

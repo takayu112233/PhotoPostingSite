@@ -21,6 +21,8 @@ var shop_genre;
 var shop_id;
 var type;
 
+var post_ready = false;
+
 
 $('input[type=file]').change(function(){
     console.log("処理開始");
@@ -44,6 +46,7 @@ $('input[type=file]').change(function(){
 
     reader.onload = function(e) {
         image.onload = function() {
+            post_ready = false;
 
             sys_msg.innerText = "写真をサーバに送信しています";
     
@@ -83,13 +86,14 @@ $('input[type=file]').change(function(){
                 timeout:3000,
             })
             .done(function( data, textStatus, jqXHR ){
-                //console.log("成功");
-                //console.log(data);
                 document.getElementById("preview_img").innerHTML = "<img src=\"./upload_img/kari_box/" + data + "\" alt=\"プレビュー\" title=\"プレビュー\" style=\"width: 200px;\">";
                 filename = data;
                 sys_msg.innerText = "";
+
+                post_ready = true;
             })
             .fail(function( jqXHR, textStatus, errorThrown ){
+                post_ready = false;
                 console.log("失敗");
                 document.getElementById("image").value = "";
                 sys_msg.innerText = "画像を送信できませんでした";
@@ -105,6 +109,10 @@ $('input[type=file]').change(function(){
 });
 
 function commit(){
+    if(!post_ready){
+        alert("写真をアップロード中です");
+        return;
+    }
     if(img == null){
         alert("写真がアップロードされていません");
         return;

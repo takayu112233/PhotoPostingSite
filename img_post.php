@@ -36,7 +36,7 @@ if($same_shop){
     <head>
         <meta name="viewport" content="width=device-width">
         <meta charset="utf-8">
-        <title>投稿画面</title>
+        <title>投稿内容編集 | ACE</title>
         <link href="css/t_style.css" rel="stylesheet">
         <link rel="icon" href="img/favi.ico">
     </head>
@@ -44,7 +44,7 @@ if($same_shop){
     <body>
         <div class = "header">
         <header class="page_header wrapper">
-            <h1>サービス名</h1>
+            <img src="img/logo_1.png" alt="logo" height="50" style="margin-top: 25px;"><p style="margin-top: 50px;">写真追加</p>
             <ul class="main_menu" style="<?php echo $default_css ?>">
                 <li><a>こんにちは <?php echo $nickname ?> さん</a></li>
                 <li><a href="./search_img.php">写真検索</a></li>

@@ -7,7 +7,8 @@ if (isset($_SESSION['login_user_nickname'])){
     $login_style = "display:none;";
     $logout_style = "";
 }else{
-    header('Location: ./search_img.php');
+    setcookie("back_url","./mypage.php",time()+60*60);
+    header('Location: ./public/login_form.php');
 }
 
 require("libDB.php");
@@ -15,7 +16,7 @@ require("libDB.php");
 function show_img(){
     $db = new libDB();
     $pdo = $db->getPDO();
-    $sql = $pdo->prepare("select * from view_all_photo");
+    $sql = $pdo->prepare("select * from view_all_photo order by photo_id desc");
     $sql->execute();
     $result = $sql->fetchAll();
 
@@ -69,7 +70,7 @@ function favorite_img(){
     <head>
         <meta name="viewport" content="width=device-width">
         <meta charset="utf-8">
-        <title>マイページ</title>
+        <title>マイページ | ACE</title>
         <link href="css/t_style.css" rel="stylesheet">
         <link rel="icon" href="img/favi.ico">
     </head>
@@ -79,19 +80,16 @@ function favorite_img(){
         </script>
         <div class = "header">
             <header class="page_header wrapper">
-                <h1>サービス名</h1>
+                    <img src="img/logo_1.png" alt="logo" height="50" style="margin-top: 25px;"><p style="margin-top: 50px;">マイページ</p>
                     <ul class="main_menu" style="<?php echo $logout_style ?>">
                         <li><a>こんにちは <?php echo $nickname ?> さん</a></li>
+                        <li><a href="javascript:void(0)" onclick="winCenter()">ニックネーム変更</a></li>
                         <li><a href="./search_img.php">写真検索</a></li>
                         <li><a>マイページ</a></li>
                         <li><a href="./shop_select.php">投稿</a></li>
                         <li><a href="./public/logout.php">ログアウト</a></li>
                     </ul>
             </header>
-        </div>
-
-        <div class="nickname_show wrapper" id="img_show">
-            <p>ニックネーム： <?php echo $_SESSION["login_user_nickname"]?></p>
         </div>
         <div class="img_show wrapper" id="img_show">
             <h2>お気に入り</h2>
@@ -104,6 +102,19 @@ function favorite_img(){
                 <?php show_img(); ?>
             </div>
         </div>
+
+        <script>
+        function winCenter(){
+  
+        //別窓の左と上の余白を求める
+        var w = ( screen.width-1000 ) / 2;
+        var h = ( screen.height-700 ) / 2;
+
+
+        //オプションパラメーターleftとtopに余白の値を指定
+        window.open("./nickname_change.php","","width=1000,height=700,scrollbars=yes" + ",left=" + w + ",top=" + h);
+        }
+        </script>
     </body>
 
     <footer>

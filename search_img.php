@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php 
-setcookie("back_url","." . $_SERVER['REQUEST_URI'],time()+60*60);
+setcookie("back_url","../." . $_SERVER['REQUEST_URI'],time()+60*60);
 
 session_start();
 
@@ -19,26 +19,36 @@ $filter_prefecture_id = "-1";
 $filter_keyword = "-1";
 $filter_shop_id = "-1";
 
-$sort_date = "-1";
+$sort_f = "-1";
+
+$filter_msg = "";
 
 if (isset($_GET['g'])){
     $filter_genre_id = $_GET['g'];
+    $filter_msg = $filter_msg . " ジャンル";
 }
 
 if (isset($_GET['p'])){
     $filter_prefecture_id = $_GET['p'];
+    $filter_msg = $filter_msg . " 都道府県";
 }
 
 if (isset($_GET['k'])){
     $filter_keyword = $_GET['k'];
+    $filter_msg = $filter_msg . " キーワード";
 }
 
 if (isset($_GET['s'])){
     $filter_shop_id = $_GET['s'];
+    $filter_msg = $filter_msg . " 店舗";
 }
 
 if (isset($_GET['sd'])){
-    $sort_date = $_GET['sd'];
+    $sort_f = $_GET['sd'];
+}
+
+if(strlen($filter_msg)>0){
+    $filter_msg = $filter_msg . " 絞り込み中";
 }
 
 require("libDB.php");
@@ -100,10 +110,17 @@ function add_where_keyword($sql_q,$filter_f,$keyword){
     return $sql_q;
 }
 
-function order_by($sql_q,$column,$a_or_d){
-    $sql_q = $sql_q . " order by " . $column . " ";
-    if($a_or_d == "a") $sql_q = $sql_q . " asc ";
-    if($a_or_d == "d") $sql_q = $sql_q . " desc ";
+function order_by($sql_q,$function){
+    if($function == "a" || $function == "b"){
+        $sql_q = $sql_q . " order by photo_id ";
+        if($function == "b") $sql_q = $sql_q . " asc ";
+        if($function == "a") $sql_q = $sql_q . " desc ";
+    }
+    if($function == "c" || $function == "d"){
+        $sql_q = $sql_q . " order by bookmark_count ";
+        if($function == "d") $sql_q = $sql_q . " asc ";
+        if($function == "c") $sql_q = $sql_q . " desc ";
+    }
     return $sql_q;
 }
 
@@ -113,10 +130,10 @@ function show_img()
 
     $db = new libDB();
     $pdo = $db->getPDO();
-    $sql_q = "select shop_name,photo_id,photo_url,prefecture_id,gerne_id from view_all_photo";
+    $sql_q = "select shop_name,photo_id,photo_url,prefecture_id,gerne_id,bookmark_count from view_all_photo";
 
     $filter_f = false;
-    global $filter_genre_id, $filter_prefecture_id, $filter_keyword, $sort_date, $filter_shop_id;
+    global $filter_genre_id, $filter_prefecture_id, $filter_keyword, $sort_f, $filter_shop_id;
 
     if($filter_genre_id != "-1"){
         $sql_q = add_where($sql_q,$filter_f,"gerne_id",$filter_genre_id);
@@ -137,10 +154,10 @@ function show_img()
         $sql_q = add_where($sql_q,$filter_f,"shop_id",$filter_shop_id);
         $filter_f = true;
     }
-    if($sort_date == "-1"){
-        $sql_q = order_by($sql_q,"photo_id","d");
+    if($sort_f == "-1"){
+        $sql_q = order_by($sql_q,"a");
     }else{
-        $sql_q = order_by($sql_q,"photo_id",$sort_date);
+        $sql_q = order_by($sql_q,$sort_f);
     }
     
     //echo "<span style=\"background-color:#00f;color:#fff;\">実行SQL文(デバック用):<br/> " . $sql_q . ";</span>";
@@ -156,7 +173,7 @@ function show_img()
     foreach($result as $loop){	 
         echo"<a href=\"" . "./detail.php?photoid=" . $loop["photo_id"] . "\" class=\"item\">"."\n";
         echo"<img src=\"./upload_img/resize/" . $loop["photo_url"] . "\">"."\n";
-        echo"<div class=\"shop_name\">" . $loop["shop_name"] . "</div>"."\n";
+        echo"<div class=\"shop_name\">" . $loop["shop_name"] . "</br>📝⭐️×" . $loop["bookmark_count"] . "</div>"."\n";
         echo"</a>"."\n";
     }
 
@@ -175,7 +192,7 @@ function show_img()
     <head>
         <meta name="viewport" content="width=device-width">
         <meta charset="utf-8">
-        <title>サービス名</title>
+        <title>写真検索 | ACE</title>
         <link href="css/t_style.css" rel="stylesheet">
         <link rel="icon" href="img/favi.ico">
     </head>
@@ -185,7 +202,7 @@ function show_img()
         </script>
         <div class = "header">
             <header class="page_header wrapper">
-                <h1>サービス名</h1>
+                    <img src="img/logo_1.png" alt="logo" height="50" style="margin-top: 25px;"><p style="margin-top: 50px;">写真検索</p>
                     <ul class="main_menu" style="<?php echo $logout_style ?>">
                         <li><a>こんにちは <?php echo $nickname ?> さん</a></li>
                         <li><a>写真検索</a></li>
@@ -203,9 +220,9 @@ function show_img()
             </header>
 
             <header class="title wrapper">
-                <a href="javascript:void(0)" class="button b_filter" onClick="filter_show();return false;">フィルタメニュー</a>
-                <a href="javascript:void(0)" class="button b_sort" onClick="sort_show();return false;">ソートメニュー</a>
-                <a id=filter_msg></a>
+                <a href="javascript:void(0)" class="button b_filter" onClick="filter_show();return false;">検索メニュー</a>
+                <a href="javascript:void(0)" style="display:none" class="button b_sort" onClick="sort_show();return false;">ソートメニュー</a>
+                <a id=filter_msg><?php echo $filter_msg ?></a>
             </header>
         </div>
 
@@ -214,13 +231,13 @@ function show_img()
         </div>
 
         <div class="wrapper" id="filter_panel">
-            <a>フィルタ</a>
             <table class="shop_add_t">
                 <tbody>
                     <tr>
                         <th><a>ジャンル</a></th>
                         <th><a>都道府県</a></th>
                         <th><a>キーワード</a></th>
+                        <th><a>ソート</a></th>
                         <th></th>
                         <th></th>
                	    </tr>
@@ -229,8 +246,16 @@ function show_img()
                         <td><select id="genre"><?php select_genre() ?></select></td>
                         <td><select id="prefecture"><?php select_prefecture() ?></select></td>
                         <td><a><input id ="keyword" type="text"></a></td>
-
-                        <td><a href="javascript:void(0)" class="button b_filter" onClick="filter_and_sort_go();return false;">実行</a></td>
+                        <td>
+                        <select id="sort_date">
+                            <option value="0">--</option>
+                            <option value="a">新しい順</option>
+                            <option value="b">古い順</option>
+                            <option value="c">いいねの多い順</option>
+                            <option value="d">いいねの少ない順</option>
+                        </select>
+                        </td>
+                        <td><a href="javascript:void(0)" class="button b_filter" onClick="filter_and_sort_go();return false;">検索</a></td>
                         <td><a href="javascript:void(0)" class="button b_filter" onClick="filter_reset();return false;">リセット</a></td>
                	    </tr>
                 </tbody>
@@ -247,8 +272,10 @@ function show_img()
                     <td>
                         <select id="sort_date">
                             <option value="0">--</option>
-                            <option value="d">新しい順</option>
-                            <option value="a">古い順</option>
+                            <option value="a">新しい順</option>
+                            <option value="b">古い順</option>
+                            <option value="c">いいねの多い順</option>
+                            <option value="d">いいねの少ない順</option>
                         </select>
                     </td>
                     <td>
@@ -267,7 +294,7 @@ function show_img()
             if(filter_prefecture_id != "-1") document.getElementById("prefecture").value = filter_prefecture_id;
             if(filter_keyword != "-1") document.getElementById("keyword").value = filter_keyword;
 
-            var sort_date = "<?php echo $sort_date; ?>";
+            var sort_date = "<?php echo $sort_f; ?>";
             if(sort_date != "-1") document.getElementById("sort_date").value = sort_date;
         </script>
         <script type="text/javascript" src="js/search_img.js"></script>

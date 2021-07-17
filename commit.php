@@ -78,14 +78,14 @@ if($type == "simple"){
 <html lang="ja">
 <head>
   <meta charset="utf-8">
-  <title>投稿しました！</title>
+  <title>投稿完了 | ACE</title>
   <link href="css/t_style.css" rel="stylesheet">
 </head>
 
 <body>
   <div class = "header">
   <header class="page_header wrapper">
-    <h1>サービス名</h1>
+      <img src="img/logo_1.png" alt="logo" height="50" style="margin-top: 25px;"><p style="margin-top: 50px;">写真追加</p>
       <ul class="main_menu" style="<?php echo $default_css ?>">
         <li><a>こんにちは <?php echo $nickname ?> さん</a></li>
         <li><a href="./search_img.php">写真検索</a></li>
@@ -97,7 +97,7 @@ if($type == "simple"){
         <li><a>こんにちは <?php echo $nickname ?> さん</a></li>
       </ul>
   </header>
-</div>
+  </div>
 
   <div class = "wrapper">
     <div style="<?php echo $default_css ?>">
