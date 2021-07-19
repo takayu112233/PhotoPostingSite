@@ -174,7 +174,7 @@ function show_img()
     foreach($result as $loop){	 
         echo"<a href=\"" . "./detail.php?photoid=" . $loop["photo_id"] . "\" class=\"item\">"."\n";
         echo"<img src=\"./upload_img/resize/" . $loop["photo_url"] . "\">"."\n";
-        echo"<div class=\"shop_name\">" . $loop["shop_name"] . "</br>📝⭐️×" . $loop["bookmark_count"] . "</div>"."\n";
+        echo"<div class=\"shop_name\">" . $loop["shop_name"] . "</br>⭐️×" . $loop["bookmark_count"] . "</div>"."\n";
         echo"</a>"."\n";
     }
 
