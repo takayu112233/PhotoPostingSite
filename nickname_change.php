@@ -73,7 +73,7 @@ $nickname = $_SESSION['login_user_nickname'];
         </header>
 
         <header class="title wrapper">
-            <a class="button" href="" onclick="window.close(); return false;" class="button">閉じる</a>
+            <a class="button" href="" onclick="window.opener.location.reload(),window.close()" class="button">閉じる</a>
         </header>
         </div>
 

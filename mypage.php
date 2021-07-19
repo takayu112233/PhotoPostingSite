@@ -97,7 +97,7 @@ function favorite_img(){
             </header>
 
             <header class="title wrapper">
-                <a href="javascript:void(0)"class="button b_filter" onclick="winCenter()">ニックネーム変更</a>
+                <a href="javascript:void(0)" class="button b_filter" onclick="winCenter()">ニックネーム変更</a>
             </header>
         </div>
         <div class="body img_show wrapper" id="img_show">

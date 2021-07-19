@@ -262,7 +262,7 @@ function window_open(){
                 <a href="<?php echo $search_img_url ?>" class="button">🔙</a>
                 <a style="<?php echo $f_add ?>" class="button" href="javascript:void(0)" onClick="<?php echo $f_func ?>();return false;">☆</a>
                 <a style="<?php echo $f_del ?>" class="button" href="javascript:void(0)" onClick="un_favorite();return false;">⭐️</a>
-                <a>📝⭐️x<?php echo $bookmark_count ?></a>
+                <a>⭐️x<?php echo $bookmark_count ?></a>
                 <a style="<?php echo $del ?>" class="button" href="javascript:void(0)" onclick="deleteButton();">🗑</a>
             </header>
         </div>

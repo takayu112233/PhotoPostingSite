@@ -1,0 +1,285 @@
+/* お気に入り */
+
+@import "https://use.fontawesome.com/releases/v5.13.0/css/all.css";
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+html {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  /*font-size: 62.5%;*/
+}
+
+
+
+/* 背景用*/
+body {
+  padding: 30px;
+  background: #f8ce51;
+}
+
+.btn,
+a.btn,
+button.btn {
+  top: 0;
+  left: 1100;
+  font-size: 1.0rem;
+  font-weight: 700;
+  line-height: 1.5;
+  position: relative;
+  display: inline-block;
+  padding: 1rem 4rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  color: #212529;
+  border-radius: 0.5rem;
+}
+
+a.btn-tag {
+  padding: 1.25rem 3rem 1.25rem 80px;
+}
+
+a.btn-tag:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 50px;
+  height: 100%;
+
+  content: "";
+
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+
+a.btn-tag--favorite {
+  color: #fff;
+  background: #f39800;
+}
+
+a.btn-tag--favorite:before {
+  background: #fff;
+}
+
+a.btn-tag--favorite i {
+  font-size: 120%;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 50px;
+  padding: 1.4rem 0;
+
+  -webkit-transition: all 0.3s;
+
+  transition: all 0.3s;
+  text-align: center;
+  letter-spacing: 0;
+
+  opacity: 0.5;
+  color: #f39800;
+}
+
+a.btn-tag--favorite:hover {
+  background: #ffa50e;
+}
+
+a.btn-tag--favorite:hover i {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+
+  opacity: 1;
+}
+
+
+
+
+/* 写真サイズ */
+img {
+  height: 80%;
+  width: 55%;
+}
+
+
+
+/* 写真追加 */
+a.btn-flat {
+  overflow: hidden;
+
+  padding: 1.5rem 6rem;
+
+  color: #fff;
+  border-radius: 0;
+  background: #000;
+}
+
+a.btn-flat span {
+  position: relative;
+}
+
+a.btn-flat:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 150%;
+  height: 500%;
+
+  content: "";
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  -webkit-transform: translateX(-98%) translateY(-25%) rotate(45deg);
+  transform: translateX(-98%) translateY(-25%) rotate(45deg);
+
+  background: #00b7ee;
+}
+
+a.btn-flat:hover:before {
+  -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
+  transform: translateX(-9%) translateY(-25%) rotate(45deg);
+}
+
+
+
+.main_menu {
+  display: flex;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  margin-top: 34px;
+  list-style: none;
+}
+
+.main_menu li {
+  margin-left: 36px;
+ 
+}
+.main_menu a:hover{
+  color: #AAA
+}
+
+.page_header h1{
+  margin-left: 20px;
+}
+.page_header {
+  display: flex;
+}
+.main_menu{
+  margin-left: auto;
+  margin-right: 20px;
+}
+.header{
+  background-color:aliceblue;
+  /* height : 180px; */
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+/*戻るボタン*/
+.button {
+  display       : inline-block;
+  border-radius : 5%;          /* 角丸       */
+  font-size     : 11pt;        /* 文字サイズ */
+  text-align    : center;      /* 文字位置   */
+  cursor        : pointer;     /* カーソル   */
+  padding       : 8px 27px;   /* 余白       */
+  background    : rgba(77, 77, 255, 0.69);     /* 背景色     */
+  color         : #ffffff;     /* 文字色     */
+  line-height   : 1em;         /* 1行の高さ  */
+  transition    : .3s;         /* なめらか変化 */
+  box-shadow    : 4px 4px 5px #666666;  /* 影の設定 */
+  border        : 2px solid rgba(77, 77, 255, 0.69);    /* 枠の指定 */
+}
+.button:hover {
+  box-shadow    : none;        /* カーソル時の影消去 */
+  color         : rgba(77, 77, 255, 0.69);     /* 背景色     */
+  background    : #ffffff;     /* 文字色     */
+}
+
+/*ポップアップ*/
+*, *:after, *:before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+.confirm {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  min-width: 280px;
+  max-width: 500px;
+  height: auto;
+  background: #E2E2E2;
+  border-radius: 10px;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid white;
+  animation: fade 1s ease 1 forwards;
+}
+.confirm h1 {
+  text-align: center;
+  font-size: 1.2rem;
+  margin: 1.5rem 1rem 0.5rem;
+}
+.confirm p {
+  text-align: center;
+  font-size: 1rem;
+  margin: 0 2rem 4.5rem;
+}
+.confirm button {
+  background: transparent;
+  border: none;
+  color: #1678E5;
+  height: 3rem;
+  font-size: 1rem;
+  width: 50%;
+  position: absolute;
+  bottom: 0;
+  cursor: pointer;
+}
+.confirm button:nth-of-type(1) {
+  border-top: 1px solid #B4B4B4;
+  border-right: 1px solid #B4B4B4;
+  left: 0;
+  border-radius: 0 0 0 10px;
+}
+.confirm button:nth-of-type(2) {
+  border-top: 1px solid #B4B4B4;
+  right: 0;
+  border-radius: 0 0 10px 0;
+}
+.confirm button:focus,
+.confirm button:hover {
+  font-weight: bold;
+  background: #EFEFEF;
+}
+.confirm button:active {
+  background: #D6D6D6;
+}

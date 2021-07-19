@@ -1,4 +1,5 @@
 <?php
+
 if (isset($_GET['s_name'])){
     $name = $_GET['s_name'];
 
