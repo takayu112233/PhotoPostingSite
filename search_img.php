@@ -227,11 +227,11 @@ function show_img()
             </header>
         </div>
 
-        <div class="img_show wrapper" id="img_show">
+        <div class="body img_show wrapper" id="img_show">
             <?php show_img(); ?>
         </div>
 
-        <div class="wrapper" id="filter_panel">
+        <div class="body wrapper" id="filter_panel">
             <table class="shop_add_t">
                 <tbody>
                     <tr>
@@ -263,7 +263,7 @@ function show_img()
             </table>
         </div>
 
-        <div class="wrapper" id="sort_panel">
+        <div class="body wrapper" id="sort_panel">
             <table class="sort_t">
                 <tbody>
                     <tr>

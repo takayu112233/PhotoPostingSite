@@ -89,15 +89,18 @@ function favorite_img(){
                     <a href="homepage.php"><img src="img/logo_1.png" alt="logo" height="50" style="margin-top: 25px;"></a><p id="m_display_none" style="margin-top: 50px;">マイページ</p>
                     <ul class="main_menu" style="<?php echo $logout_style ?>">
                         <li id="m_display_none"><a>こんにちは <?php echo $nickname ?> さん</a></li>
-                        <li id="m_display_none"><a href="javascript:void(0)" onclick="winCenter()">ニックネーム変更</a></li>
                         <li><a href="<?php echo $search_img_url ?>"><img src="./img/search.svg" width="32" height="32" title="検索"></a></li>
                         <li><a href="./mypage.php"><img src="./img/mypage.svg" width="32" height="32" title="マイページ" style="filter: drop-shadow(1px 1px 5px gold);"></a></li>
                         <li><a href="./shop_select.php"><img src="./img/post.svg" width="32" height="32" title="投稿"></a></li>
                         <li><a href="./public/logout.php"><img src="./img/logout.svg" width="32" height="32" title="ログアウト"></a></li>
                     </ul>
             </header>
+
+            <header class="title wrapper">
+                <a href="javascript:void(0)"class="button b_filter" onclick="winCenter()">ニックネーム変更</a>
+            </header>
         </div>
-        <div class="img_show wrapper" id="img_show">
+        <div class="body img_show wrapper" id="img_show">
             <h2>お気に入り</h2>
             <div class="post_images">
                 <?php favorite_img(); ?>

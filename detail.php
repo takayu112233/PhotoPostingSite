@@ -258,9 +258,7 @@ function window_open(){
             </header>
 
             <header class="title wrapper">
-                <a href="<?php echo $search_img_url ?>" class="button">写真検索に戻る</a>
-                <a style="<?php echo $s_add ?>" input type="submit" class="button" onclick="window_open();">同じ場所の写真を追加</a>
-                <a class="button" href="./search_img.php?s=<?php echo $a_shop_id?>" input type="submit" class="btn btn-flat">同じ場所の他の投稿を見る</a>
+                <a href="<?php echo $search_img_url ?>" class="button">🔙</a>
                 <a style="<?php echo $f_add ?>" class="button" href="javascript:void(0)" onClick="<?php echo $f_func ?>();return false;">☆</a>
                 <a style="<?php echo $f_del ?>" class="button" href="javascript:void(0)" onClick="un_favorite();return false;">⭐️</a>
                 <a>📝⭐️x<?php echo $bookmark_count ?></a>
@@ -275,7 +273,7 @@ function window_open(){
             <input type="hidden" name="type" value="same_shop">
         </form>
 
-        <div class = "wrapper">
+        <div class = "body wrapper">
             <h2>写真詳細</h2>
             <div class="content"> 
                 <p><img class="detail_pic" src="<?php echo $photo_url ?>"></p>
@@ -303,6 +301,12 @@ function window_open(){
            
             <h3>投稿者</h3>
             <div class="content"><p><?php echo $photo_send_nickname ?></p></div>
+
+            <h3 style="margin-bottom: 10px;">メニュー</h3>
+            <div class="content">
+                <a style="<?php echo $s_add ?>" input type="submit" class="button" onclick="window_open();">同じ場所の写真を追加</a>
+                <a class="button" href="./search_img.php?s=<?php echo $a_shop_id?>" input type="submit" class="btn btn-flat">同じ場所の写真を検索</a>
+            </div>
         </br>
             </div>
         </div>

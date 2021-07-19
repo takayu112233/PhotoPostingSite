@@ -105,9 +105,8 @@ if($type == "simple"){
         <li><a>こんにちは <?php echo $nickname ?> さん</a></li>
       </ul>
   </header>
-  </div>
 
-  <div class = "wrapper">
+  <header class="title wrapper">
     <div style="<?php echo $default_css ?>">
       <a href="./shop_select.php" class="button">店舗選択へ戻る</a>
       <a href="<?php echo $search_img_url ?>" class="button">写真検索へ戻る</a> 
@@ -115,6 +114,9 @@ if($type == "simple"){
       <div style="<?php echo $simple_css ?>">
         <a href="#" onClick="window.close(); return false;" class="button">閉じる</a>
       </div>
+  </div>
+
+  <div class = "body wrapper">
     <h1>(投稿) 投稿しました！</h1>
 
     <h2>店情報</h2>

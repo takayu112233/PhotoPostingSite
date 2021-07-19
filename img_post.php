@@ -63,9 +63,8 @@ if($same_shop){
                 <li><a>こんにちは <?php echo $nickname ?> さん</a></li>
             </ul>
         </header>
-        </div>
 
-        <div class = "wrapper">  
+        <header class="title wrapper">
             <div style="<?php echo $default_css ?>">
                 <a href="<?php echo $search_img_url ?>" class="button">店舗選択へ戻る</a>
                 <a href="./search_img.php" class="button">写真検索へ戻る</a> 
@@ -73,6 +72,10 @@ if($same_shop){
             <div style="<?php echo $simple_css ?>">
                 <a href="#" onClick="window.close(); return false;" class="button">閉じる</a>
             </div>
+        </header>
+        </div>
+
+        <div class = "body wrapper">  
             
     	    <h2>店情報</h2>
             <div class="content"> 

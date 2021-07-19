@@ -78,8 +78,12 @@
       margin-right: 20px;
   }
   .header{
+      top: 0;
+      left: 0;
+      position: fixed;
+      z-index: 100;
+      width: 100%;
       background-color:aliceblue;
-      /* height : 180px; */
       background-size: cover;
       background-position: center top;
       background-repeat: no-repeat;
@@ -213,6 +217,11 @@
     width: 100%;
   }
 
+  /*上部固定用調整*/
+  .body {
+    margin-top: 142px;
+  }
+
   /*
   スマホ用
   */
@@ -250,6 +259,8 @@
         padding-left: 0px;
         margin-right: 10px;
         margin-left: 10px;
+        margin-top: 3px;
+        margin-bottom: 3px;
       }
 
       .main_menu a{
@@ -296,5 +307,10 @@
       }
       table#google_place_t th:nth-child(4) {
         display: none;
+      }
+
+      /* 上部固定用調整 */
+      .body {
+        margin-top: 186px;
       }
   }

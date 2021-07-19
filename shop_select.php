@@ -160,13 +160,14 @@ $shop_table_json = json_encode($shop_result);
                 <li><a href="./public/logout.php"><img src="./img/logout.svg" width="32" height="32" title="ログアウト"></a></li>
             </ul>
         </header>
-        </div>
 
-        <div class = "wrapper">
+        <header class="title wrapper">
             <a href="<?php echo $search_img_url ?>" class="button">写真検索へ戻る</a>
             <a href="" class="button">店舗選択リセット</a>
+        </header>
         </div>
-        
+
+        <div class = "body">
         <div class = "shop_add wrapper" id="shop_add">   
     	    <h2>施設検索</h2>
             <div class="content"> 
@@ -251,6 +252,7 @@ $shop_table_json = json_encode($shop_result);
                 </table>
                 </div>
             </div>
+        </div> 
         </div>
     </body>
 

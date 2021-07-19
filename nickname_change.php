@@ -71,9 +71,13 @@ $nickname = $_SESSION['login_user_nickname'];
                 <li><a>こんにちは <?php echo $nickname ?> さん</a></li>
             </ul>
         </header>
+
+        <header class="title wrapper">
+            <a class="button" href="" onclick="window.close(); return false;" class="button">閉じる</a>
+        </header>
         </div>
 
-        <div class = "wrapper">  
+        <div class = "body wrapper">  
             <div class="content">
                 <p><?php echo $msg ?></p> 
                 <table>
@@ -88,7 +92,7 @@ $nickname = $_SESSION['login_user_nickname'];
                         <td><a><input type="txt" name="nick_name" maxlength='30'require></a></td>
                     </tr>
                     <tr>
-                        <td><a href="" onclick="window.close(); return false;" class="button">閉じる</a><a href="javascript:form.submit()" class="button" style="margin-left: 10px;">変更</a></td>
+                        <td><a href="javascript:form.submit()" class="button" style="margin-left: 10px;">変更</a></td>
                         </form>
                     </tr>
                 </tbody>
