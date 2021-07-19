@@ -1,88 +1,50 @@
 <?php
-session_start();
+ini_set('display_errors', "On");
 
-if (!isset($_SESSION[''])) {
-    $_SESSION[''] = [];
-}
+require("libDB.php");
 
-if (isset($_POST['page']) && $_POST['page'] !== 'page') {
-    $_SESSION['page']['page'] = $_POST['page'];
-}
+$db = new libDB();
+$pdo = $db->getPDO();
+
+$sql = $pdo->prepare("select * from gerne;");
+
+//SQL文の実行
+$sql->execute();
+//結果の取得
+$result = $sql->fetchAll();
+
+
 ?>
-<!doctype html>
-<html lang="ja">
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ホームページ</title>
-    <style type="text/css">
-        * {
-            color: #333;
-        }
-        main {
-            width: 500px;
-            margin: auto;
-        }
-        textarea {
-            width: 500px;
-            box-sizing: border-box;
-            font-size: 20px;
-            padding: 15px;
-            border-radius: 10px;
-            border: 1px solid #999;
-            outline: none;
-        }
-        form {
-            text-align: center;
-            padding: 0 0 15px 0;
-        }
-        button {
-            font-size: 20px;
-            padding: 5px 15px;
-        }
-        .tweet {
-            box-sizing: border-box;
-            margin: 0px auto;
-            padding: 15px;
-            border: 1px solid #cccccc;
-        }
-        .tweet + .tweet {
-            border-top: none;
-        }
-    </style>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Document</title>
+    <link rel="stylesheet" href="homepage.css">
 </head>
 <body>
-<main>
-    <h1><center>ホームページ</center></h1>
-    <h2><center><何を探しますか？></center></h2>
-    <h1><center>・カフェ</center></h1>
-    <form action= method="post">
-        
-        <button>選択</button>
-    </form>
-    <h1><center>・レジャー</center></h1>
-    <form action="" method="post">
-       
-        <button>選択</button>
-    </form>
-    <h1><center>・グルメ</center></h1>
-    <form action= method="post">
-        
-        <button>選択</button>
-    </form>
-    <form action="libDB.php" method="post">
-        
-       
-    </form>
-    <?php
-    foreach (array_reverse($_SESSION['tweets']) as $tweet) {
-    ?>
-    <div class="tweet"><?= nl2br($tweet) ?></div>
-    <?php
-    }
-    ?>
-</main>
+<div class="shell">
+  <header class="shell-header">
+    <img src="logo_1.png" width="300" height="120">
+  </header>
+  <main class="shell-body">
+    <h2>何をお探しですか？</h2>
+    <ul id="menu">
+      
+        <?php
+        foreach($result as $loop){
+          echo "<li>";
+          echo "<a href=\"search_img.php?g=" .  $loop["gerne_id"] . "\">" . $loop["gerne_name"] . "</a>";
+          echo "</li>";
+          //echo $loop["gerne_id"] . $loop["gerne_name"];
+        } 
+        ?>
+    </ul>
+  </main>
+  
+</div>
 </body>
 </html>
