@@ -66,8 +66,8 @@ $nickname = $_SESSION['login_user_nickname'];
     <body>
         <div class = "header">
         <header class="page_header wrapper">
-            <img src="img/logo_1.png" alt="logo" height="50" style="margin-top: 25px;"><p style="margin-top: 50px;">ニックネーム変更</p>
-            <ul class="main_menu" style="<?php echo $default_css ?>">
+            <a><img src="img/logo_1.png" alt="logo" height="50" style="margin-top: 25px;"></a><p id="m_display_none" style="margin-top: 50px;">ニックネーム変更</p>
+            <ul class="main_menu">
                 <li><a>こんにちは <?php echo $nickname ?> さん</a></li>
             </ul>
         </header>

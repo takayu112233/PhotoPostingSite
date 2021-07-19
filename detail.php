@@ -209,6 +209,7 @@ function hidePopup(){
 
 function deleteButton(){
     document.getElementById('delete').style.display="block";
+    window.scrollTo(0, 0);
 }
 
 function window_open(){

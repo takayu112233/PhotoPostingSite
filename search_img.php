@@ -232,30 +232,29 @@ function show_img()
         </div>
 
         <div class="body wrapper" id="filter_panel">
+            <h3>ジャンル</h3>
+            <div class="content"><p><select id="genre"><?php select_genre() ?></select></p></div>
+            <h3>都道府県</h3>
+            <div class="content"><select id="prefecture"><?php select_prefecture() ?></select></div>
+            <h3>キーワード</h3>
+            <div class="content"><p><input id ="keyword" type="text"></p></div>
+            <h3>ソート</h3>
+            <div class="content">
+                <p>
+                    <select id="sort_date">
+                        <option value="0">--</option>
+                        <option value="a">新しい順</option>
+                        <option value="b">古い順</option>
+                        <option value="c">いいねの多い順</option>
+                        <option value="d">いいねの少ない順</option>
+                    </select>
+                </p>
+            </div>
+            <br>
+
             <table class="shop_add_t">
                 <tbody>
                     <tr>
-                        <th><a>ジャンル</a></th>
-                        <th><a>都道府県</a></th>
-                        <th><a>キーワード</a></th>
-                        <th><a>ソート</a></th>
-                        <th></th>
-                        <th></th>
-               	    </tr>
-
-                    <tr>
-                        <td><select id="genre"><?php select_genre() ?></select></td>
-                        <td><select id="prefecture"><?php select_prefecture() ?></select></td>
-                        <td><a><input id ="keyword" type="text"></a></td>
-                        <td>
-                        <select id="sort_date">
-                            <option value="0">--</option>
-                            <option value="a">新しい順</option>
-                            <option value="b">古い順</option>
-                            <option value="c">いいねの多い順</option>
-                            <option value="d">いいねの少ない順</option>
-                        </select>
-                        </td>
                         <td><a href="javascript:void(0)" class="button b_filter" onClick="filter_and_sort_go();return false;">検索</a></td>
                         <td><a href="javascript:void(0)" class="button b_filter" onClick="filter_reset();return false;">リセット</a></td>
                	    </tr>
