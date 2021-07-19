@@ -83,6 +83,7 @@ if($type == "simple"){
 
 <html lang="ja">
 <head>
+  <meta name="viewport" content="width=device-width">
   <meta charset="utf-8">
   <title>投稿完了 | ACE</title>
   <link href="css/t_style.css" rel="stylesheet">
@@ -91,7 +92,8 @@ if($type == "simple"){
 <body>
   <div class = "header">
   <header class="page_header wrapper">
-      <a href="homepage.php"><img src="img/logo_1.png" alt="logo" height="50" style="margin-top: 25px;"></a><p id="m_display_none" style="margin-top: 50px;">写真追加</p>
+      <a style="<?php echo $default_css ?>" href="homepage.php"><img src="img/logo_1.png" alt="logo" height="50" style="margin-top: 25px;"></a>
+      <a style="<?php echo $simple_css ?>"><img src="img/logo_1.png" alt="logo" height="50" style="margin-top: 25px;"></a><p id="m_display_none" style="margin-top: 50px;">写真追加</p>
       <ul class="main_menu" style="<?php echo $default_css ?>">
         <li id="m_display_none"><a>こんにちは <?php echo $nickname ?> さん</a></li>
         <li><a href="<?php echo $search_img_url ?>"><img src="./img/search.svg" width="32" height="32" title="検索"></a></li>
@@ -133,8 +135,12 @@ if($type == "simple"){
 
     <h2>アップロード画像</h2>
     <div class="content"> 
-      <p>アップロード画像<br><img src="<?php echo $r_path ?>" style="width: 200px"><p>
-      <p>コメント<br><?php echo $comment ?><p>
+      <p><img src="<?php echo $r_path ?>" style="max-width: 500px; width: 100%"><p>
+    </div>
+
+    <h2>コメント</h2>
+    <div class="content"> 
+      <p><?php echo $comment ?><p>
     </div>
 
   </div>

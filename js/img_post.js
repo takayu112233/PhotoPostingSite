@@ -46,6 +46,8 @@ $('input[type=file]').change(function(){
 
     reader.onload = function(e) {
         image.onload = function() {
+            document.getElementById("comment").focus();
+            
             post_ready = false;
 
             sys_msg.innerText = "写真をサーバに送信しています";

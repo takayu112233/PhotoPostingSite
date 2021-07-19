@@ -112,7 +112,7 @@ function shop_search(){
                 html = html +　"<td>" + prefecture + "</td>";
                 html = html +　"<td>" + address +  "</td>";
                 html = html +　"<td>" + place_id +  "</td>";
-                html = html +　"<td><a href=\"javascript:void(0)\" class=\"button\" id=\"table_button\" onClick=\"shop_select_g(" + cnt + ");return false;\">選択</a></td>\n";
+                html = html +　"<td id=\"map_button\"><a href=\"javascript:void(0)\" class=\"button\" id=\"table_button\" onClick=\"shop_select_g(" + cnt + ");return false;\">選択</a></td>\n";
 
                 html = html +　"</tr>";
 
@@ -219,4 +219,12 @@ function shop_add(){
     var address = document.getElementById("address").value; 
 
     post("", {button:"追加","genre":genre,"prefecture":prefecture,"shopname":shopname,"postcode":postcode,"address":address})
+}
+
+function on_keyboard(code)
+{
+	if(13 === code)
+	{
+        shop_search();
+	}
 }

@@ -174,10 +174,7 @@ $shop_table_json = json_encode($shop_result);
                     <table>
                         <tbody>
                         <tr>
-                            <th><a>撮影場所</a></th>
-               	        </tr>
-                        <tr>
-                            <td><a><input type="text" id="shopname_search" autocomplete="off" style="height: 30px;padding-top: 2px;"></a></td>
+                            <td><a><input type="text" id="shopname_search" autocomplete="off" style="height: 30px;padding-top: 2px;" onkeypress="on_keyboard(event.keyCode);"></a></td>
                             <td><a href="javascript:void(0)" class="button" onClick="shop_search();return false;">検索</a></td>
                	        </tr>
                         </tbody>
@@ -191,7 +188,7 @@ $shop_table_json = json_encode($shop_result);
     	    <h2>施設選択（Google Map）</h2>
 
             <div class="content"> 
-            <div id = search_result>検索してください</div>
+            <div id = search_result>撮影場所を検索してください</div>
             </div>
         </div>
 
@@ -266,6 +263,7 @@ $shop_table_json = json_encode($shop_result);
         
         post("img_post.php", {shop_id:ai_id,shop_name:shop_name,genre:genre_name});
     }
+    document.getElementById("shopname_search").focus();
     </script>
 
     <footer>

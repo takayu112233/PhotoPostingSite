@@ -50,7 +50,8 @@ if($same_shop){
     <body>
         <div class = "header">
         <header class="page_header wrapper">
-            <a href="homepage.php"><img src="img/logo_1.png" alt="logo" height="50" style="margin-top: 25px;"></a><p id="m_display_none" style="margin-top: 50px;">写真追加</p>
+            <a style="<?php echo $default_css ?>" href="homepage.php"><img src="img/logo_1.png" alt="logo" height="50" style="margin-top: 25px;"></a>
+            <a style="<?php echo $simple_css ?>"><img src="img/logo_1.png" alt="logo" height="50" style="margin-top: 25px;"></a><p id="m_display_none" style="margin-top: 50px;">写真追加</p>
             <ul class="main_menu" style="<?php echo $default_css ?>">
                 <li id="m_display_none"><a>こんにちは <?php echo $nickname ?> さん</a></li>
                 <li><a href="<?php echo $search_img_url ?>"><img src="./img/search.svg" width="32" height="32" title="検索"></a></li>
@@ -105,7 +106,7 @@ if($same_shop){
                 <h2>コメント</h2>
 
                 <div class="content"> 
-                    <textarea style="width:500px;height:200px;" id="comment" name="comment" wrap="hard"></textarea><p>
+                    <textarea id="comment" name="comment" wrap="hard"></textarea><p>
                     <a href="javascript:void(0)" class="button" onClick="commit();return false;">送信する</a>
                 </div>
             </form>
@@ -118,6 +119,9 @@ if($same_shop){
             shop_genre = "<?php echo $shop_genre ?>";
             shop_id = <?php echo $shop_id ?>;
             type = "<?php echo $type ?>";
+
+            document.getElementById("comment").focus();
+    </script>
         </script> 
 
     </body>

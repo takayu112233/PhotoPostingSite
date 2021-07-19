@@ -40,7 +40,7 @@ function show_img(){
     }
 
     if($cnt == 0){
-        echo("<p>投稿はありません。</p>");
+        echo("<div class=\"content\"><p>投稿はありません。</p></div>");
     }
     echo"</div>"."\n";
 }
@@ -66,7 +66,7 @@ function favorite_img(){
     }
 
     if($cnt == 0){
-        echo("<p>お気に入りはありません。</p>");
+        echo("<div class=\"content\"><p>お気に入りはありません。</p></div>");
     }
     echo"</div>"."\n";
 }

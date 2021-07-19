@@ -276,16 +276,33 @@ function window_open(){
         </form>
 
         <div class = "wrapper">
-        <h2>写真詳細</h2>
+            <h2>写真詳細</h2>
             <div class="content"> 
-            <p><img class="detail_pic" src="<?php echo $photo_url ?>"></p>
-            <p>ジャンル： <?php echo $gerne?></p>
-            <p>店舗名: <?php echo $shop_name?></p>
-            <p>住所: <?php echo $prefecture?></p>
-            <p>コメント: <?php echo $r_comment?></p>
-            <p>地図:</p>
-            <iframe src="https://maps.google.co.jp/maps?output=embed&q=<?php echo $a_prefecture ?>+<?php echo $a_shop_name ?>" width="700" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            <p>投稿者： <?php echo $photo_send_nickname ?></p>
+                <p><img class="detail_pic" src="<?php echo $photo_url ?>"></p>
+            </div>
+
+            <h3>ジャンル</h3>
+            <div class="content"><p><?php echo $gerne?></p></div>
+
+
+            <h3>店舗名</h3>
+            <div class="content"><p><?php echo $shop_name?></p></div>
+
+            <h3>住所</h3>
+            <div class="content"><p><?php echo $prefecture?></p></div>
+
+            <h3>コメント</h3>
+            <div class="content"><p><?php echo $r_comment?></p></div>
+            
+            <h3>地図</h3>
+            <div class="content">
+                <div class="map">
+                    <p><iframe src="https://maps.google.co.jp/maps?output=embed&q=<?php echo $a_prefecture ?>+<?php echo $a_shop_name ?>" height="400" style="border:0;"></iframe></p>
+                </div>
+            </div>
+           
+            <h3>投稿者</h3>
+            <div class="content"><p><?php echo $photo_send_nickname ?></p></div>
         </br>
             </div>
         </div>
