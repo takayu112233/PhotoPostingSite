@@ -203,7 +203,7 @@ function show_img()
         </script>
         <div class = "header">
             <header class="page_header wrapper">
-                    <img src="img/logo_1.png" alt="logo" height="50" style="margin-top: 25px;"><p id="m_display_none" style="margin-top: 50px;">写真検索</p>
+                    <a href="homepage.php"><img src="img/logo_1.png" alt="logo" height="50" style="margin-top: 25px;"></a><p id="m_display_none" style="margin-top: 50px;">写真検索</p>
                     <ul class="main_menu" style="<?php echo $logout_style ?>">
                         <li id="m_display_none"><a>こんにちは <?php echo $nickname ?> さん</a></li>
                         <li><a><img src="./img/search.svg" width="32" height="32" style="filter: drop-shadow(1px 1px 5px gold);" title="検索"></a></li>

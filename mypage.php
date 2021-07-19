@@ -86,7 +86,7 @@ function favorite_img(){
         </script>
         <div class = "header">
             <header class="page_header wrapper">
-                    <img src="img/logo_1.png" alt="logo" height="50" style="margin-top: 25px;"><p id="m_display_none" style="margin-top: 50px;">マイページ</p>
+                    <a href="homepage.php"><img src="img/logo_1.png" alt="logo" height="50" style="margin-top: 25px;"></a><p id="m_display_none" style="margin-top: 50px;">マイページ</p>
                     <ul class="main_menu" style="<?php echo $logout_style ?>">
                         <li id="m_display_none"><a>こんにちは <?php echo $nickname ?> さん</a></li>
                         <li id="m_display_none"><a href="javascript:void(0)" onclick="winCenter()">ニックネーム変更</a></li>
