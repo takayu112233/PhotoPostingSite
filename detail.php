@@ -146,6 +146,9 @@ foreach($result as $loop){
 
 }
 
+$bookmark_count = "<a href=\"javascript:void(0)\" onclick=\"show_bookmark(" . $photoid . ")\">⭐️x" . $bookmark_count . "</a>";
+
+
 $pdo = $db->getPDO();
 $sql = $pdo->prepare("select * from photo_data where photo_id = :photo_id");
 $sql->bindValue(':photo_id', $photoid, PDO::PARAM_STR);
@@ -262,7 +265,7 @@ function window_open(){
                 <a href="<?php echo $search_img_url ?>" class="button">🔙</a>
                 <a style="<?php echo $f_add ?>" class="button" href="javascript:void(0)" onClick="<?php echo $f_func ?>();return false;">☆</a>
                 <a style="<?php echo $f_del ?>" class="button" href="javascript:void(0)" onClick="un_favorite();return false;">⭐️</a>
-                <a>⭐️x<?php echo $bookmark_count ?></a>
+                <a><?php echo $bookmark_count ?></a>
                 <a style="<?php echo $del ?>" class="button" href="javascript:void(0)" onclick="deleteButton();">🗑</a>
             </header>
         </div>
@@ -308,9 +311,19 @@ function window_open(){
                 <a style="<?php echo $s_add ?>" input type="submit" class="button" onclick="window_open();">同じ場所の写真を追加</a>
                 <a class="button" href="./search_img.php?s=<?php echo $a_shop_id?>" input type="submit" class="btn btn-flat">同じ場所の写真を検索</a>
             </div>
-        </br>
+            </br>
             </div>
         </div>
+    
+
+    <script>
+        function show_bookmark(photo_id){
+            var w = ( screen.width-1000 ) / 2;
+            var h = ( screen.height-700 ) / 2;
+            window.open("./bookmark_who.php?photoid=" + photo_id,"","width=1000,height=700,scrollbars=yes" + ",left=" + w + ",top=" + h);
+        }
+    </script> 
+
     </body>
 
     <footer>

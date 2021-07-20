@@ -200,6 +200,19 @@ WHERE shop.delete_flag = 0
 AND photo_data.delete_flag = 0
 AND  closed = 0;
 
+
+-- 誰がブックマークをしたか表示する用
+CREATE VIEW view_bookmark_who AS 
+select photo_data.photo_id,shop_name,users.user_id,nickname from bookmark
+INNER JOIN users 
+ON bookmark.user_id = users.user_id
+INNER JOIN photo_data
+ON bookmark.photo_id = photo_data.photo_id
+INNER JOIN shop
+ON photo_data.shop_id = shop.shop_id 
+WHERE users.delete_flag = 0
+ORDER BY bookmark_id DESC;
+
 -- ↓メモです。
 
 
