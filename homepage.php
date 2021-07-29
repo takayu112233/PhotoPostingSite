@@ -22,7 +22,7 @@ $result = $sql->fetchAll();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
-    <title>homepage</title> 
+    <title>ホームページ | ACE</title> 
      <style type="text/css">
 	<!--
 	body {
@@ -42,7 +42,8 @@ $result = $sql->fetchAll();
   </header>
   <main class="shell-body">
    <h2 style="text-align:center"><font size="6">何をお探しですか？</font></h2>
-    <ul id="menu">
+   <ul id="menu" style="padding-left: 0px;">
+    
     
       
  <?php
