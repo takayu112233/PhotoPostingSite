@@ -26,7 +26,7 @@ session_destroy();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ログイン画面</title>
+    <title>ログイン | ACE</title>
     <link rel="stylesheet" href="login_form.css">
     <link rel="icon" href="../img/favi.ico">
 </head>

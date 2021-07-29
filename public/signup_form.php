@@ -19,7 +19,7 @@ unset($_SESSION['login_err']);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ユーザ登録画面</title>
+    <title>ユーザ登録 | ACE</title>
     <link rel="stylesheet" href="signup_form.css">
     <link rel="icon" href="../img/favi.ico">
 </head>
