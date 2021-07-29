@@ -9,8 +9,15 @@
       grid-template-columns: 20px 1fr 20px;
     }
   }
-   
-  
+   footer p{
+      text-align:right;
+      margin-right: 30px;
+  }
+
+.wrap.pattern-1{
+  text-align:center;
+  padding:20px 0;
+}
   footer{
       background-color: #eee;
   }

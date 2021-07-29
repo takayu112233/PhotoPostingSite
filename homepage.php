@@ -22,29 +22,47 @@ $result = $sql->fetchAll();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
-    <title>Document</title>
-    <link rel="stylesheet" href="homepage.css">
+    <title>homepage</title> 
+     <style type="text/css">
+	<!--
+	body {
+	background-color: #f0f8ff;
+	}
+	-->
+	</style>
+    <link rel="stylesheet" href="homepage.css">     
+    
 </head>
-<body>
+<body>  
 <div class="shell">
   <header class="shell-header">
-    <img src="logo_1.png" width="300" height="120">
+    <h2 style="text-align:center"><font size="6"><img src="logo_1.png" width="300" height="130"></font>
+    
+    
   </header>
   <main class="shell-body">
-    <h2>何をお探しですか？</h2>
+   <h2 style="text-align:center"><font size="6">何をお探しですか？</font></h2>
     <ul id="menu">
+    
       
-        <?php
-        foreach($result as $loop){
-          echo "<li>";
-          echo "<a href=\"search_img.php?g=" .  $loop["gerne_id"] . "\">" . $loop["gerne_name"] . "</a>";
-          echo "</li>";
-          //echo $loop["gerne_id"] . $loop["gerne_name"];
+ <?php
+          foreach($result as $loop){
+          
+          echo   "<center><a href=\"search_img.php?g=".$loop["gerne_id"] . "\">" . $loop["gerne_name"] . "</a></center>";
+          echo "<center></li></center>";
+          //echo $loop["gerne_id"] . $loop["gerne_name"];             
         } 
         ?>
+    </ul>
+   </main>
+
+      
     </ul>
   </main>
   
 </div>
 </body>
+<footer>
+       <center> <p><small>&copy;2021 プロジェクト実習G15</small></p></center>
+    </footer>
 </html>
