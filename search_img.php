@@ -103,10 +103,10 @@ function add_where_keyword($sql_q,$filter_f,$keyword){
     }else{
         $sql_q = $sql_q . " and ";
     }
-    $sql_q = $sql_q . " comment LIKE '%" . $keyword . "%'";
+    $sql_q = $sql_q . " (comment LIKE '%" . $keyword . "%'";
     $sql_q = $sql_q . " OR address LIKE '%" . $keyword . "%'";
     $sql_q = $sql_q . " OR shop_name LIKE '%" . $keyword . "%'";
-    $sql_q = $sql_q . " OR prefecture_name LIKE '%" . $keyword . "%'";
+    $sql_q = $sql_q . " OR prefecture_name LIKE '%" . $keyword . "%')";
 
     return $sql_q;
 }
@@ -162,6 +162,7 @@ function show_img()
     }
     
     //echo "<span style=\"background-color:#00f;color:#fff;\">実行SQL文(デバック用):<br/> " . $sql_q . ";</span>";
+    echo "<!-- " . $sql_q . "　-->";
 
     $sql = $pdo->prepare($sql_q);
     $sql->execute();
